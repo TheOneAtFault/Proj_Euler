@@ -38,3 +38,48 @@ static void Main(string[] args)
         }
     }
 ```
+
+===Sum Prime C#===
+```C#
+class Program
+    {
+        static void Main(string[] args)
+        {
+            var input = Convert.ToInt32(Console.ReadLine());
+
+            bool[] primes = new bool[input + 1];
+            Array.Fill(primes, true);
+
+            for (int i = 2; i*i < input; i++)
+            {
+                if (primes[i])
+                {
+                    for (int j = i*i; j < input; j+=i)
+                    {
+                        //Console.WriteLine(j);
+                        primes[j] = false;
+                    }
+                }
+            }
+
+            List<int> primeNumbers = new List<int>();
+            for (int i = 2; i < input; i++)
+            {
+                if (primes[i])
+                {
+                    primeNumbers.Add(i);
+                }
+            }
+            //Console.WriteLine($"{string.Join(", ", primeNumbers)}");
+
+            long sum = 0;
+            foreach (var item in primeNumbers)
+            {
+                sum += item;
+            }
+            Console.WriteLine(sum);
+
+            Console.ReadLine();
+        }
+    }
+    ```
